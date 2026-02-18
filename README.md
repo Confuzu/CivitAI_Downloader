@@ -13,17 +13,31 @@ Model
 name.safetensors - https://civitai.com/api/download/models/ID
 
 Organizing them into appropriate folders and downloads only the files that are not already present in the specified folder.
- Also includes a Retry mechanism for failed downloads 
+
+## Authentication
+
+Set your CivitAI API token as an environment variable (recommended):
+
+```bash
+export CIVITAI_API_TOKEN=your_token_here
+```
+
+If the variable is not set, you will be prompted to enter it at startup (input is hidden). The token is sent via `Authorization: Bearer` header — never appended to URLs.
+
+## Usage
+
+```bash
+python civitAI_downloader.py --url_file my_urls.txt
+```
+Also includes a Retry mechanism for failed downloads
  ```
- max_attempts = 3
-```
-It has 2 Arguments
-```
---url_file
-```
+--retries 3
+``` 
 "Path to the file containing direct download URLs."
+```
+--url_file *(required)*
+```
+ "Maximum number of concurrent download threads." Default is 5
 ```
 --max_threads
 ```
- "Maximum number of concurrent download threads." Default is 5
-
